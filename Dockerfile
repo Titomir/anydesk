@@ -27,8 +27,9 @@ ARG GNAME=$UNAME
 ARG GID=1000
 ARG GROUPS=$GNAME
 
-useradd --create-home -d /home/$UNAME -g $GID -u $UID $UNAME \
-usermod -a -G $GROUPS $UNAME
+RUN $GID $GNAME \
+&& useradd --create-home -d /home/$UNAME -g $GID -u $UID $UNAME \
+&& usermod -a -G $GROUPS $UNAME
 USER $UNAME
 WORKDIR /home/$UNAME
 
