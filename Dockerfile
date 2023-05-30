@@ -21,13 +21,10 @@ anydesk libpolkit-gobject-1-0 \
 lsb-release pciutils \
 libpango1.0-0 pulseaudio ffmpeg libsm6 libxext6 dbus-x11 tzdata
 
-ARG UNAME=udocker
 ARG UID=1000
-ARG GNAME=$UNAME
-ARG GID=1001
+ARG GID=1000
 ARG GROUPS=$GNAME
 
-RUN groupadd -g $GID $GNAME \
 && useradd --create-home -d /home/$UNAME -g $GID -u $UID $UNAME \
 && usermod -a -G $GROUPS $UNAME
 USER $UNAME
