@@ -27,7 +27,7 @@ ARG GNAME=$UNAME
 ARG GID=udocker
 ARG GROUPS=$GNAME
 
-RUN groupadd -g udocker $GNAME \
+RUN udocker $GNAME \
 && useradd --create-home -d /home/$UNAME -g udocker -u $UID $UNAME \
 && usermod -a -G $GROUPS $UNAME
 USER $UNAME
