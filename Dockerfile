@@ -24,11 +24,11 @@ libpango1.0-0 pulseaudio ffmpeg libsm6 libxext6 dbus-x11 tzdata
 ARG UNAME=udocker
 ARG UID=1000
 ARG GNAME=$UNAME
-ARG GID=1000
+ARG GID=udocker
 ARG GROUPS=$GNAME
 
-RUN 1000 $GNAME \
-&& useradd --create-home -d /home/$UNAME -g 1000 -u $UID $UNAME \
+RUN groupadd -g udocker $GNAME \
+&& useradd --create-home -d /home/$UNAME -g udocker -u $UID $UNAME \
 && usermod -a -G $GROUPS $UNAME
 USER $UNAME
 WORKDIR /home/$UNAME
