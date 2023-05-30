@@ -22,12 +22,13 @@ lsb-release pciutils \
 libpango1.0-0 pulseaudio ffmpeg libsm6 libxext6 dbus-x11 tzdata
 
 ARG UNAME=udocker
-ARG UID=1000
-ARG GNAME=udocker   # Используйте существующее имя группы
-ARG GID=1000
+ARG UID=1001
+ARG GNAME=$UNAME
+ARG GID=1001
 ARG GROUPS=$GNAME
 
-RUN useradd --create-home -d /home/$UNAME -g $GID -u $UID $UNAME \
+RUN groupadd -g $GID $GNAME \
+&& useradd --create-home -d /home/$UNAME -g $GID -u $UID $UNAME \
 && usermod -a -G $GROUPS $UNAME
 USER $UNAME
 WORKDIR /home/$UNAME
