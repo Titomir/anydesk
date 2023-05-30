@@ -24,7 +24,7 @@ libpango1.0-0 pulseaudio ffmpeg libsm6 libxext6 dbus-x11 tzdata
 ARG UNAME=udocker
 ARG UID=1000
 ARG GNAME=$UNAME
-ARG GID=1000
+ARG GID=1001
 ARG GROUPS=$GNAME
 
 RUN groupadd -g $GID $GNAME \
